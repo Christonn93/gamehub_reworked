@@ -1,4 +1,4 @@
-async function myFetch(){ 
+/* async function myFetch(){ 
 
       const cors_host = "https://noroffcors.herokuapp.com/";
       const api_key = `f6dd075d81db416fbb289fc9d3726038`;
@@ -19,7 +19,7 @@ console.error(err);
 });
 }
 
-myFetch();
+myFetch(); */
 
 import { api } from "./api/api.js";
 
