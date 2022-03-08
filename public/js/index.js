@@ -1,30 +1,5 @@
-/* async function myFetch(){ 
+import { apiFetch } from "./api/api.js";
 
-      const cors_host = "https://noroffcors.herokuapp.com/";
-      const api_key = `f6dd075d81db416fbb289fc9d3726038`;
-      const api_host =  cors_host + `https://api.rawg.io/api/games?key=${api_key}&page_size=40`;
-
-fetch(api_host)
-.then(response => {
-  const call_response = response.json()
-  const data = call_response;
-  return data;
-}).then(data => {
-  const results = data.results;
-  console.log(results)
-  return results;
-})
-.catch(err => {
-console.error(err);
-});
-}
-
-myFetch(); */
-
-import { api } from "./api/api.js";
-
-let data = await api();
-console.log(data);
 
 const app = document.getElementById("app");
 
@@ -35,7 +10,7 @@ function createPage() {
 
   const main = document.createElement("main");
   app.append(main);
-  addContentMain();
+addContentMain();
 
   const footer = document.createElement("footer");
   app.append(footer);
@@ -71,7 +46,6 @@ function addContentMain() {
   mainDiv.classList.add("page-main");
   getMain.append(mainDiv);
 
-  if (window.location.href.indexOf("/index.html")) {
     const container = document.createElement("div");
     container.classList.add("container");
     mainDiv.append(container);
@@ -79,34 +53,33 @@ function addContentMain() {
     const section_1 = document.createElement("section");
     section_1.classList.add("game-section");
     container.append(section_1);
-    section_1.id ="Shooter Games"
-    section_1.innerHTML = displayShooter();
+    section_1.id = "shooter";
+    section_1.innerHTML = `<h2>Header</h2>` + apiFetch("shooter");
 
     const banner_1 = document.createElement("section");
     banner_1.classList.add("banner");
     container.append(banner_1);
-    banner_1.id ="banner-1"
-    banner_1.innerHTML = displayBanner();
+    banner_1.id = "banner-1";
+    banner_1.innerHTML = `<h4>banner</h4>`
 
     const section_2 = document.createElement("section");
     section_2.classList.add("game-section");
     container.append(section_2);
-    section_2.id ="Action Games"
-    section_2.innerHTML = displayAction();
+    section_2.id = "adventure";
+    section_2.innerHTML = `<h2>Header</h2>` + apiFetch("adventure");
 
     const banner_2 = document.createElement("section");
     banner_2.classList.add("banner");
-    banner_2.id ="banner-2"
+    banner_2.id = "banner-2";
     container.append(banner_2);
-    banner_2.innerHTML = displayBanner();
+    banner_2.innerHTML = `<h4>banner</h4>`
 
     const section_3 = document.createElement("section");
     section_3.classList.add("game-section");
     container.append(section_3);
-    section_2.id ="Simulator Games"
-    section_3.innerHTML = displaySimulator();
+    section_3.id = "arcade";
+    section_3.innerHTML = `<h2>Header</h2>` + apiFetch("arcade");
   }
-}
 
 function addContentFooter() {
   const getFooter = document.querySelector("footer");
@@ -122,24 +95,3 @@ function addContentFooter() {
     <label>Copyright Christopher Tønnesland 2022</label>
     </div>`;
 }
-
-function displayShooter() {
-  const gameCard = document.createElement("div");
-  gameCard.classList.add("game-card");
-  for(let i = 0; i < data.length; i++){
-  
-    const title = data[i].title;
-
-    const card = gameCard.innerHTML += `<div class="card"><h2>${title}</h2></div>`;
-    return card;
-  
-  }
-}
-
-function displayAction() {}
-
-function displaySimulator() {}
-
-function displayBanner() {}
-
-

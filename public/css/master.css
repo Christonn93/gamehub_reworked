@@ -105,16 +105,70 @@ body {
 }
 
 main {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 15px;
+    display: block;
 
     min-height: 900px;
     margin: 25px;
     padding: 25px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.game-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 15px;
+    background-color: #0D0D0D;
+
+    padding: 5px;
+}
+
+.game-section > h2 {
+    display: flex;
+    justify-content: center;
+    flex: 1 0 100%;
+
+    padding: 0;
+    margin: 0;
+
+    color: #F21B1B;
+    background-color: #0D0D0D;
+}
+
+.banner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: 15px;
+
+    padding: 0 15px;
+    margin: 15px 0;
+    border: .05em solid #0D0D0D;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1;
+
+    min-width: 200px;
+    border: .05em solid #0D0D0D;
+    background-color: #F2F2F2;
+}
+
+.card > h2,
+.card > p {
+    padding: 10px;
+}
 
 .footer {
     display: grid;

@@ -108,3 +108,98 @@ export function footerLayout(){
                                 <label>Copyright Christopher Tønnesland 2022</label>
                             </div>`
 }
+
+export function create(el, classNames, child, parent, ...dataAttr) {
+  let elem = null;
+  try {
+    elem = document.createElement(el);
+  } catch (e) {
+    throw new Error('Unable to create HTMLElemnt! Wrong data');
+  }
+
+  if (classNames) elem.classList.add(...classNames.split(' '));
+
+  if (child && Array.isArray(child)) {
+    child.forEach((childElem) => childElem && elem.appendChild(childElem));
+  } else if (child && typeof child === 'object') {
+    elem.appendChild(child);
+  } else if (child && typeof child === 'string') {
+    elem.innerHTML = child;
+  }
+
+  if (parent) {
+    parent.appendChild(elem);
+  }
+
+  if (dataAttr.length) {
+    dataAttr.forEach(([attrName, attrValue]) => {
+      if (attrValue === '') {
+        elem.setAttribute(attrName, '');
+      }
+      if (
+        attrName.match(
+          /value|id|placeholder|rows|autocorrect|spellcheck|src|alt|type|draggable|href/
+        )
+      ) {
+        elem.setAttribute(attrName, attrValue);
+      } else {
+        elem.dataset[attrName] = attrValue;
+      }
+    });
+  }
+  return elem;
+}
+
+
+// header start
+const header = create('header');
+const headerWrapper = create('div', 'header__wrapper', null, header);
+const informContainer = create('div', 'inform-container', null, headerWrapper);
+const timer = create('time', 'timer', null, informContainer);
+const counter = create('div', 'counter', null, informContainer);
+let pause = create('button', '', null, informContainer);
+// header end
+// main start
+const main = create('main');
+const gameBoard = create('div', 'game-board', null, main);
+let numbers;
+// main end
+
+// footer start
+const footer = create('footer');
+const footerWrapper = create('div', 'footer__wrapper', null, footer);
+let menu = create('button', 'footer__button', null, footerWrapper);
+let solveButton = create('button', 'footer__button', null, footerWrapper);
+const checkboxdivContainer = create('div', 'checkbox__container', null, footerWrapper);
+const checkboxdiv = create('div', 'checkbox', null, checkboxdivContainer);
+
+
+
+
+
+
+
+
+
+function createElement(header, main, section, div, divHeader, para, link, footer){
+  const classes = {
+    header: "page-header",
+    nav: {
+      main: "nav",
+      link: "nav-link",
+    },
+    main: "main",
+    section: "section",
+    gContainer: "grid-container",
+    fContainer: "flex-container",
+    footer: "page-footer",
+    button: "btn"
+  }
+
+  const elementId = {
+    
+  }
+
+
+
+}
